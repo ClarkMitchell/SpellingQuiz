@@ -1,4 +1,6 @@
-dog
-cat
-david
-java
+hello
+world
+quiz
+time
+is
+now

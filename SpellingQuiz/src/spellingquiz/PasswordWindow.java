@@ -1,4 +1,3 @@
-
 package spellingquiz;
 
 import java.io.FileInputStream;
@@ -7,6 +6,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,7 +21,6 @@ public class PasswordWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jButton1 = new javax.swing.JButton();
@@ -29,10 +28,9 @@ public class PasswordWindow extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jPasswordField1 = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jTextField1.setText("Password");
 
         jLabel1.setText("Password");
 
@@ -53,10 +51,12 @@ public class PasswordWindow extends javax.swing.JFrame {
         jLabel2.setText("Quiz will be erased.");
 
         jLabel3.setForeground(new java.awt.Color(177, 53, 55));
-        jLabel3.setText("Confirm Password");
+        jLabel3.setText("Password Reset. Re-enter and Submit");
 
         jLabel4.setForeground(new java.awt.Color(159, 47, 49));
         jLabel4.setText("Incorrect Password");
+
+        jPasswordField1.setText("jPasswordField1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -84,12 +84,13 @@ public class PasswordWindow extends javax.swing.JFrame {
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 6, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(1, 1, 1)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(12, 12, 12)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(53, 53, 53))))
         );
         layout.setVerticalGroup(
@@ -97,11 +98,11 @@ public class PasswordWindow extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jLabel1)
+                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(5, 5, 5)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17)
+                .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -121,66 +122,79 @@ public class PasswordWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     //SUBMIT
-    
-    private void checkPass(){
+    private void checkPass(String password) {
 
         boolean result;
         Scanner file = null;
-        
-        try
-      {
-         file = new Scanner(new FileInputStream("password.txt"));
-      }
-      catch(FileNotFoundException e)
-      {
-         System.out.println("Can't open needed files.");
-         System.exit(0);
-      }
-      
-      String password = jTextField1.getText();
-      
-      if (password.equals(file.next()))
-         System.out.println("Correct");
-      else{
-         jLabel4.setVisible(true);
-         jTextField1.setText(null);
-      }
-      
-      file.close(); 
+
+        try {
+            file = new Scanner(new FileInputStream("password.txt"));
+        } catch (FileNotFoundException e) {
+            System.out.println("Can't open needed files.");
+            System.exit(0);
+        }
+
+
+        if (password.equals(file.next())) {
+            VocabEntry.window();
+            PasswordWindow.super.dispose();
+
+        } else {
+            jLabel4.setVisible(true);
+            jPasswordField1.setText(null);
+        }
+
+        file.close();
     }
-    
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        checkPass();
+        jLabel4.setVisible(false);
+        String password = new String(jPasswordField1.getPassword());
+        
+        if (new File("password.txt").isFile() == false) {
+            setPassword(password);
+        }
+        
+        checkPass(password);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     //RESET
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-      
-      jLabel3.setVisible(false);
-      PrintWriter file = null;
-      String password = jTextField1.getText();
-      if (new File("password.txt").isFile())
-          new File("password.txt").delete();
-      
-      try
-      {
-         file = new PrintWriter(new FileOutputStream("password.txt"));
-      }
-      catch(FileNotFoundException e)
-      {
-         System.out.println("Could not create password file.");
-         System.exit(0);
-      }
 
-      file.append(password);
-      file.close();
-      
-      jLabel3.setVisible(true);
-      checkPass();
-      
+        if (new File("password.txt").isFile()) {
+            new File("password.txt").delete();
+        }
+        jLabel3.setVisible(true);
+        
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    public void window() {
+    private void setPassword(String password) {
+        PrintWriter file = null;
+
+        if (new File("password.txt").isFile()) {
+            new File("password.txt").delete();
+        }
+
+        try {
+            new File("password.txt").createNewFile();
+        } catch (IOException ex) {
+            Logger.getLogger(PasswordWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        try {
+            file = new PrintWriter(new FileOutputStream("password.txt"));
+        } catch (FileNotFoundException e) {
+            System.out.println("Could not create password file.");
+            System.exit(0);
+        }
+
+        file.print(password);
+        file.close();
+
+    }
+
+    public static void window() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -207,7 +221,9 @@ public class PasswordWindow extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PasswordWindow().setVisible(true);
+                PasswordWindow frame = new PasswordWindow();
+                frame.setLocationRelativeTo(null);
+                frame.setVisible(true);
             }
         });
     }
@@ -219,7 +235,7 @@ public class PasswordWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

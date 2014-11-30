@@ -1,6 +1,9 @@
 
 package spellingquiz;
 
+import java.io.File;
+import javax.swing.JOptionPane;
+
 
 public class Opening extends javax.swing.JFrame {
 
@@ -22,6 +25,11 @@ public class Opening extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton1.setText("Student");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Teacher");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -75,18 +83,24 @@ public class Opening extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Teacher teacher = new Teacher();
-        teacher.writePassword();
-        if (teacher.isCorrectPW() != true)
-           System.out.println("Incorrect Password");
-        else
-            System.out.println("Successful");
+        PasswordWindow.window();
+        Opening.super.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       File f1 = new File("Test.txt");
+       if (f1.exists() == false)
+           JOptionPane.showMessageDialog(rootPane, "No tests available");
+       else{
+           Quiz.window();
+            Opening.super.dispose();
+       }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public void window() {
+    public static void window() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -113,7 +127,9 @@ public class Opening extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Opening().setVisible(true);
+                Opening frame = new Opening();
+                frame.setLocationRelativeTo(null);
+                frame.setVisible(true);
             }
         });
     }

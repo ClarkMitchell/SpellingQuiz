@@ -67,13 +67,7 @@ public class Form extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
-        Voice voice;
-        voice = voiceManager.getVoice(VOICENAME);
-        voice.allocate();
-        voice.setRate(110);
-        voice.speak(jTextField1.getText());
-        voice.setRate(85);
-        voice.speak(jTextField1.getText());
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public void window() {
