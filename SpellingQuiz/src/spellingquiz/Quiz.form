@@ -81,6 +81,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/spellingquiz/064259-high-resolution-dark-blue-denim-jeans-icon-people-things-speech.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Speak"/>
       </Properties>
       <Events>
@@ -89,6 +92,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButton2">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/spellingquiz/green-checkmark-and-red-minus-hi.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Submit"/>
       </Properties>
       <Events>

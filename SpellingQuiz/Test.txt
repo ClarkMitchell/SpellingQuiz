@@ -1,6 +1,8 @@
-hello
-world
-quiz
-time
-is
-now
+character
+friends
+whom
+heard
+order
+villain
+basin
+carton

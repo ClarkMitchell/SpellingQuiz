@@ -1,7 +1,5 @@
 package spellingquiz;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.nio.file.*;
 import java.util.List;
 import java.nio.charset.Charset;
@@ -42,6 +40,7 @@ public class Quiz extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/spellingquiz/064259-high-resolution-dark-blue-denim-jeans-icon-people-things-speech.png"))); // NOI18N
         jButton1.setText("Speak");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -49,6 +48,7 @@ public class Quiz extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/spellingquiz/green-checkmark-and-red-minus-hi.png"))); // NOI18N
         jButton2.setText("Submit");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,9 +112,9 @@ public class Quiz extends javax.swing.JFrame {
         voice = voiceManager.getVoice(VOICENAME);
         voice.allocate();
         voice.setPitchShift(1);
-        voice.setRate(115);
+        voice.setRate(117);
         voice.speak(list.get(counter).toString());
-        voice.setRate(88);
+        voice.setRate(85);
         voice.speak(list.get(counter).toString());
     }
     
@@ -139,7 +139,7 @@ public class Quiz extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusGained
-        
+        //speak();
     }//GEN-LAST:event_jTextField1FocusGained
 
     private void jButton2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jButton2FocusLost
@@ -199,7 +199,7 @@ public class Quiz extends javax.swing.JFrame {
                 score.clear();
                 
                 grabList();
-
+                
             }
         });
 
