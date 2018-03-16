@@ -2,6 +2,8 @@
 
 [Download](https://github.com/ClarkMitchell/SpellingQuiz/raw/master/SpellingQuiz/dist/SpellingQuiz.jar)
 
+![main](http://i.imgur.com/4FBenUd.jpg)
+
 The program requires a Java Virtual Environment to run.
 
 
