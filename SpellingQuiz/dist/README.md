@@ -1,6 +1,4 @@
-=============
-Configuration
-=============
+# Configuration
 
 The program requires a Java Virtual Environment to run.
 
