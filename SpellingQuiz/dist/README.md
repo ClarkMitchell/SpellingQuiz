@@ -1,5 +1,7 @@
 # Configuration
 
+[Download](https://github.com/ClarkMitchell/SpellingQuiz/raw/master/SpellingQuiz/dist/SpellingQuiz.jar)
+
 The program requires a Java Virtual Environment to run.
 
 
